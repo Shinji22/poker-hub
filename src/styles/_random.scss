@@ -1,0 +1,22 @@
+.random {
+    display: inline-flex;
+    float: right;
+    margin: 10px 20px 0px;
+
+    span {
+        border: 1px solid $dark-light;
+    }
+
+    .value {
+        width: 50px;
+        background: transparent !important;
+        color: $dark-light;
+        font-weight: normal;
+    }
+    
+    .shuffle {
+        cursor: pointer;
+        user-select: none;
+        background: $dark-light;
+    }
+}

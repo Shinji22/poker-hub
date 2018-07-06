@@ -1,0 +1,372 @@
+.sharkscope-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+
+    .left {
+        padding: 10px 15px;
+        width: 250px;
+        border-right: 1px solid $sidebar-background-color;  /* #404047 */;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+
+        .left-bar-tabs {
+            width: 100%;
+            justify-content: center;
+            margin: 7px;
+
+            .button {
+                background: $sidebar-background-color;
+                color: $dark-light;
+                &.selected {
+                    background: $dark-light;
+                    color: $sidebar-background-color;
+                }
+            }
+
+        }
+
+        #search-bar {
+            z-index: 10;
+            margin-top: 20px;
+            input {
+                background: $sidebar-background-color;
+                color: $dark-light;
+                caret-color: $dark-light;
+                
+                &:focus {
+                    border-color: $white;
+                }
+
+                &::placeholder {
+                    color: $dark-light;
+                    opacity: 0.5;
+                }
+            }
+            .material-icons {
+                color: $dark-light;
+            }
+        }
+       
+        .select {
+            margin-top: -1px;
+            width: 180px;
+            margin-left: 20px;
+            z-index: 9;
+            select {
+                width: 180px;
+                background: $sidebar-background-color;
+                color: $dark-light;
+                border-top-left-radius: 0px;
+                border-top-right-radius: 0px;
+                border-bottom-left-radius: 3px;
+                border-bottom-right-radius: 3px;
+                &:focus {
+                    border-color: $white;
+                }
+            }
+
+            &:not(.is-multiple):after {
+                border: 1px solid $white;
+                border-right: 0;
+                border-top: 0;
+            }
+        }
+
+        #suggestion-list {
+            margin-left: 0;
+            list-style-type: none;
+            color: $dark-light;
+            font-size: 14px;
+            height: 200px;
+
+            li {
+                max-height: 50px;
+                cursor: pointer;
+                padding-left: 5px;
+                
+                img {
+                    border-radius: 50%;
+                    margin-top: 9px;
+                }
+                span {
+                    display: inline-block;
+                    line-height: 50px;
+                    vertical-align: top;
+                    margin-left: 5px;
+                }
+                &:hover{
+                    background-color: $sidebar-background-color;
+                }
+            }
+        }
+
+        #favorite-list {
+            margin-left: 0;
+            list-style-type: none;
+            color: $dark-light;
+            font-size: 14px;
+
+            li {
+                cursor: pointer;
+                padding: 5px 0px 5px 5px;
+                &:hover{
+                    background-color:  $sidebar-background-color;
+                    
+                    .update-icon {
+                        display: inline;
+                    }
+                }
+
+                .favorite-player {
+                    margin: 0;
+                    padding: 0;
+                    font-size: 1em;
+                }
+
+                .favorite-date {
+                    margin: 3px 0 0 0;
+                    padding: 0;
+                    font-size: 0.8em;
+                    color: $dark-light;
+                    
+                    span {
+                        vertical-align: middle;
+                    }
+
+                    i{
+                        font-size: 1.1em;
+                        vertical-align: middle;
+                    }
+                }
+
+                .update-icon {
+                    cursor: pointer;
+                    float: right;
+                    display: none;
+                    margin-top: 10px;
+                    margin-right: 5px;
+                }
+            }
+        }
+        
+    }
+
+    .right {
+        position: absolute;
+        top: 0px;
+        left: 251px;
+        right: 0px;
+        bottom: 0px;
+        overflow-y: auto;
+        margin-bottom: 50px;
+
+        .stats-item {
+            position: relative;
+            display: inline-block;
+            margin: 15px;
+            width: 350px;
+            height: 470px;
+            background: $sidebar-background-color;
+            color: $white;
+            font-family: 'Montserrat', sans-serif !important; 
+
+            h2 {
+                position: absolute;
+                left: 45px;
+                top: 0px;
+                color: $white;
+                padding: 10px;
+                margin: 0;
+                font-size: 18px;
+                font-weight: normal;
+            }
+            
+            h5 {
+                position: absolute;
+                left: 45px;
+                top: 25px;
+                color: $dark-light;
+                padding: 10px;
+                margin: 0;
+                font-size: 11px;
+                font-weight: normal;
+            }
+            .ability {
+                width: 36px;
+                height: 36px;
+                position: absolute;
+                top: 10px;
+                left: 10px;                
+                line-height: 36px;
+                text-align: center;
+                font-size: 20px;
+                color: $white;
+                &.bad { background: $red; }
+                &.medium { background: $warning; }
+                &.good { background: $primary; }
+            }
+
+
+            .close-icon {
+                position: absolute;
+                top: 15px;
+                right: 10px;
+                display: none;
+                cursor: pointer;
+            }
+
+            .like-icon {
+                position: absolute;
+                top: 15px;
+                right: 33px;
+                display: none;
+                cursor: pointer;
+            }
+
+            &:hover {
+                .close-icon, .like-icon{
+                    display: block;
+                    font-size: 1.2em;
+                }
+            }
+
+            .no-chart {
+                margin-top: 60px;
+                width: 100%;
+                height: 220px;
+                line-height: 220px;
+                text-align: center;
+                color: $dark-light;
+                font-size: 0.9em;
+            }
+
+            .chart {
+                margin-top: 60px;
+                width: 100%;
+                height: 220px;
+            }
+
+            .stats-list {
+                width: 100%;
+
+                .stats {
+                    margin: 3px 0px 5px 10px;
+                    display: inline-block;
+                    width: 46%;
+
+                    .stat-name {
+                        font-size: 12px;
+                        color: $dark-light;
+                        text-transform: capitalize;
+                        display: inline-block;
+                        width: 95px;
+                        vertical-align: middle;
+                    }
+
+                    &.with-percent {
+                        width: auto;
+                        margin: 15px 10px 25px 10px;
+                        display: block;
+
+                        .stat-name {
+                            display: block;
+                        }
+                        .stat-value {
+                            display: block;
+                            width: auto;
+                        }
+                        .progress::-webkit-progress-bar {
+                            background-color: $content-background-color;
+                        }
+                        .progress {
+                            height: 5px !important;
+                            margin-bottom: 0px;
+                        }
+
+                        .progress-min, .progress-max {
+                            font-size: 10px;
+                            color: $dark-light;
+                        }
+
+                        .progress-min {
+                            float: left;
+                        }
+                        
+                        .progress-max {
+                            float: right;
+                        }
+
+                        .progress-value {
+                            font-size: 11px;
+                            width: 40px;
+                            position: absolute;
+                            left: calc(33.7% - 20px);
+                            top: 10px;
+                            text-align: center;
+                        }
+
+                        .percent::-webkit-progress-value {
+                            background: $white ;
+                        }
+                    }
+
+                    .stat-value {
+                        display: inline-block;
+                        font-size: 12px;
+                        width: 20px;
+                        color: $white;
+                        position: relative;
+
+                        
+                    }
+                }
+            }
+        }
+
+        .stats-filter {
+            height: 60px;
+            border-bottom: 1px solid $sidebar-background-color;
+            padding: 15px;
+
+            label {
+                margin-right: 10px;
+                color: $dark-light;
+                vertical-align: top;
+                line-height: 35px;
+            }
+
+            .select {
+                margin-top: 3px;
+                margin-right: 15px;
+                select {
+                    width: 150px;
+                    background: $sidebar-background-color;
+                    color: $dark-light;
+                    &:focus {
+                        border-color: $white;
+                    }
+                }
+
+                &:not(.is-multiple):after {
+                    border: 1px solid $white;
+                    border-right: 0;
+                    border-top: 0;
+                }
+            }
+
+            .like-icon {
+                cursor: pointer;
+                line-height: 35px;
+                color: $dark-light;
+                user-select: none;
+                &:hover{
+                    color: $white;
+                }
+            }
+        }
+    }
+}

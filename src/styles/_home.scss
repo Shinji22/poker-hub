@@ -1,0 +1,58 @@
+.home-page {
+    padding: 25px 35px;
+    height: calc(100% - 50px);
+    position: relative;
+
+    .home-launcher {
+        margin-right: 350px;
+    }
+
+    .home-twitter {
+        position: absolute;
+        top: 25px;
+        right: 35px;
+    }
+
+    h4 {
+        color: $dark-light;
+    }
+
+    .item-list {
+        background: $sidebar-background-color;
+        padding: 10px;
+        margin: 10px 0px 30px;
+        height: 68px;
+
+        .soft-item {
+            min-width: 70px;
+            text-align: center;
+            display: inline-block;        
+
+            .soft-icon {
+                display: block;
+                border-radius: 5px;
+                position: relative;
+                transition: border-radius 200ms;
+            }
+
+            .soft-icon:hover {
+                display: block;
+                border-radius: 50%;
+                position: relative;
+            }
+        }
+    }
+
+    #home-logo {
+        position: absolute;
+        bottom: 25px;
+        right: 35px;
+        opacity: 0.4;
+        transition: opacity 500ms ease-in-out;
+    }
+
+    #home-logo:hover {
+        opacity: 1;
+    }
+
+}

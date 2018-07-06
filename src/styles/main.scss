@@ -1,0 +1,129 @@
+@import "~material-design-icons/iconfont/material-icons.css";
+@import "colors";
+@import "~bulma";
+@import "sharkscope";
+@import "nash";
+@import "random";
+@import "home";
+
+@import url('https://fonts.googleapis.com/css?family=Days+One|Montserrat');
+
+body, html {
+    overflow-y: hidden;
+    font-family: 'Montserrat', sans-serif !important; 
+}
+
+.sidebar{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 60px;
+    background: $sidebar-background-color;
+    color: $dark-light;
+    overflow-x: hidden;
+    transition: width 200ms;
+
+    &.expanded {
+        width: 240px;
+        a {
+            width: 240px;
+            text-align: left;
+            white-space: nowrap;
+
+            i {
+                font-size: 1.7em;
+                line-height: 50px;
+                text-align: center;
+                width: 60px;
+            }
+
+            .item {
+                display: inline-block;
+                width: 180px;
+                visibility: visible;
+                line-height: 50px;
+                vertical-align: top;
+                white-space: nowrap;
+                overflow-x: hidden;
+            }
+        }
+    }
+    
+    a {
+        display: block;
+        width: 60px;
+        height: 50px;
+        background: $sidebar-background-color;
+        color: $dark-light;
+        transition: background-color 200ms;
+        transition: width 200ms;
+        border-right: 2px solid transparent;
+
+        &:hover{
+            background: $header-background-color;
+            border-right: 2px solid $success;
+        }
+        
+        &.selected {
+            color: $white;
+            border-right: 2px solid $success;
+        }
+
+        i {
+            font-size: 24px;
+            line-height: 50px;
+            text-align: center;
+            width: 60px;
+            vertical-align: top;
+        }
+
+        img {
+            width: 24px;
+            height: 24px;
+            margin-left: 13px;
+            margin-top: 18px;
+        }
+
+        .item {
+            display: inline-block;
+            visibility: hidden;
+            transition: width 200ms;
+            overflow-x: hidden;
+        }
+    }
+
+    .toggle-sidebar-button {
+        position: absolute;
+        bottom: 0px;
+    }
+}
+
+.header-title {
+    line-height: 50px;
+    padding-left: 80px;
+    transition: padding 200ms;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    background-color: $header-background-color;
+    color: $dark-light;
+    text-transform: uppercase;
+    font-size: 20px;
+    &.reduced {
+        line-height: 50px;
+        padding-left: 260px;
+    }
+}
+
+
+.content {
+    background: $content-background-color;
+    padding-left: 60px;
+    height: 100vh;
+    overflow-y: hidden;
+    transition: padding 200ms;
+
+    &.reduced {
+        padding-left: 240px;
+    }
+}
