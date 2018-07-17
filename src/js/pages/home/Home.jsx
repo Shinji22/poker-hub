@@ -1,8 +1,8 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import shortid from 'shortid';
+import fs from 'fs';
 
-import logoDark from '../../../assets/poker_hub_logo_dark.png';
 import logoLight from '../../../assets/poker_hub_logo_light.png';
 
 const { execFile } = require('child_process');
@@ -25,7 +25,10 @@ const Home = inject('store')(
         const addScript = document.createElement('script');
         addScript.setAttribute('src', 'https://platform.twitter.com/widgets.js');
         document.body.appendChild(addScript);
-        console.log('loaded');
+
+        store.home.soft.forEach(s => {
+            if (fs.existsSync(s.defaultPath)) s.enabled = true;
+        });
 
         return (
             <div className="home-page">
@@ -36,12 +39,17 @@ const Home = inject('store')(
                             if (soft.type === 'game')
                                 return (
                                     <div key={shortid.generate()} className="soft-item">
-                                        <a
-                                          onClick={() => {
-                                                launch(soft);
-                                            }}>
-                                            <img src={soft.icon} alt="icon" className="soft-icon" />
-                                        </a>
+                                        {soft.enabled ? (
+                                            <a
+                                              onClick={() => {
+                                                    launch(soft);
+                                                }}
+                                            >
+                                                <img src={soft.icon} alt="icon" className="soft-icon" />
+                                            </a>
+                                        ) : (
+                                            <img src={soft.icon} alt="icon" className="soft-icon disabled" />
+                                        )}
                                     </div>
                                 );
                             return null;
@@ -56,7 +64,8 @@ const Home = inject('store')(
                                         <a
                                           onClick={() => {
                                                 launch(soft);
-                                            }}>
+                                            }}
+                                        >
                                             <img src={soft.icon} alt="icon" className="soft-icon" />
                                         </a>
                                     </div>

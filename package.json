@@ -1,9 +1,10 @@
 {
     "name": "poker-hub",
     "productName": "Poker HUB",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "main": "src/electron-starter.js",
     "author": "Shinji22 <cassius_22@hotmail.com>",
+    "description": "Poker HUB by Shinji",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -45,7 +46,7 @@
         "server": "webpack-dev-server --port 3000",
         "debug": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
         "buildold": "webpack && electron .",
-        "build": "webpack && electron-packager . --out=\"C:\\Users\\tanaka\\Desktop\\poker\" --icon=\"src\\assets\\icons\\poker-hub\\poker_hub_icon_01.ico\" --overwrite=true"
+        "build": "webpack && electron-packager . --out=\"C:\\Program Files\" --asar=true --icon=\"src\\assets\\icons\\poker-hub\\poker_hub_icon_01.ico\" --overwrite=true"
     },
     "devDependencies": {
         "babel-eslint": "^8.2.2",

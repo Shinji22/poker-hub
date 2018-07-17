@@ -11,6 +11,8 @@
         position: absolute;
         top: 25px;
         right: 35px;
+        width: 320px;
+        overflow-x: hidden;
     }
 
     h4 {
@@ -33,12 +35,21 @@
                 border-radius: 5px;
                 position: relative;
                 transition: border-radius 200ms;
-            }
 
-            .soft-icon:hover {
-                display: block;
-                border-radius: 50%;
-                position: relative;
+                &:hover {
+                    display: block;
+                    border-radius: 50%;
+                    position: relative;
+                }
+                &.disabled {
+                    opacity: 0.4;
+                    &:hover {
+                        display: block;
+                        border-radius: 5px;
+                        position: relative;
+                    }
+                    
+                }
             }
         }
     }
