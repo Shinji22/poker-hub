@@ -12,7 +12,6 @@ export class Sharkscope {
     @observable tab = 'search'; // search / favorites
     @action
     setTab(t) {
-        console.log(t);
         this.tab = t;
     }
 
@@ -37,8 +36,12 @@ export class Sharkscope {
     }
 
     @action
-    addPlayer(p) {
-        if (!this.getPlayer(p)) {
+    addPlayer(p, force) {
+        if (force) {
+            const old = this.getPlayer(p);
+            this.removePlayer(old);
+            this.players.push(p);
+        } else if (!this.getPlayer(p)) {
             p.hash = SHA256(p.pseudo + p.network).toString();
             this.players.push(p);
         }
@@ -75,6 +78,9 @@ export class Sharkscope {
         const idx = this.players.findIndex(player => player.pseudo === p.pseudo && player.network === p.network);
         if (idx > -1) {
             this.players[idx].favorite = true;
+            const fav = Object.assign({}, this.players[idx]);
+            fav.favoriteDate = new Date().toLocaleDateString();
+            this.favorites.push(fav);
         }
         this.players.replace(this.players);
     }
@@ -86,17 +92,38 @@ export class Sharkscope {
             this.players[idx].favorite = false;
         }
         this.players.replace(this.players);
+
+        const favIdx = this.players.findIndex(player => player.pseudo === p.pseudo && player.network === p.network);
+        if (favIdx > -1) {
+            this.favorites.splice(favIdx, 1);
+        }
+    }
+
+    @action
+    updateFavorite(p) {
+        const favIdx = this.players.findIndex(player => player.pseudo === p.pseudo && player.network === p.network);
+        if (favIdx > -1) {
+            p.favorite = true;
+            p.favoriteDate = new Date().toLocaleDateString();
+            this.favorites[favIdx] = p;
+        }
     }
 
     /**
      * Filters / Sort types
      */
     @observable sortBy = null;
+    @observable sortOrder = 'ASC';
     @observable filterFavorites = false;
 
     @action
     setSortBy(s) {
         this.sortBy = s;
+    }
+
+    @action
+    setSortOrder(s) {
+        this.sortOrder = s;
     }
 
     @action

@@ -81,7 +81,13 @@
             list-style-type: none;
             color: $dark-light;
             font-size: 14px;
-            height: 200px;
+            /* height: 200px; */
+            position: absolute;
+            top: 140px;
+            bottom: 50px;
+            left: 0px;
+            right: 0px;
+            overflow-y: auto;
 
             li {
                 max-height: 50px;
@@ -108,47 +114,56 @@
             margin-left: 0;
             list-style-type: none;
             color: $dark-light;
-            font-size: 14px;
+            position: absolute;
+            top: 60px;
+            bottom: 50px;
+            left: 0px;
+            right: 0px;
+            overflow-y: auto;
+            overflow-x: hidden;
 
             li {
+                max-height: 50px;
                 cursor: pointer;
-                padding: 5px 0px 5px 5px;
+                padding-left: 5px;
+                position: relative;
+                
+                img {
+                    border-radius: 50%;
+                    margin-top: 9px;
+                }
+                p {
+                    margin-left: 5px;
+                    vertical-align: top;
+                    display: inline-block;
+
+                    .pseudo {
+                        line-height: 25px;
+                        font-size: 16px;
+                    }
+
+                    .date {
+                        font-size: 11px;
+                    }
+
+                    
+                }
                 &:hover{
-                    background-color:  $sidebar-background-color;
-                    
-                    .update-icon {
-                        display: inline;
-                    }
+                    background-color: $sidebar-background-color;
                 }
 
-                .favorite-player {
-                    margin: 0;
-                    padding: 0;
-                    font-size: 1em;
-                }
-
-                .favorite-date {
-                    margin: 3px 0 0 0;
-                    padding: 0;
-                    font-size: 0.8em;
-                    color: $dark-light;
-                    
-                    span {
-                        vertical-align: middle;
-                    }
-
-                    i{
-                        font-size: 1.1em;
-                        vertical-align: middle;
-                    }
-                }
-
-                .update-icon {
+                .sync-favorite {
+                    position: absolute;
                     cursor: pointer;
-                    float: right;
-                    display: none;
-                    margin-top: 10px;
-                    margin-right: 5px;
+                    bottom: 2px;
+                    right: 2px;
+                    font-size: 1em;
+                    transition: 0.6s ease-out;
+
+                    &:hover {
+                        color: $white;
+                        transform: rotateZ(-360deg);
+                    }
                 }
             }
         }
@@ -339,6 +354,14 @@
                 line-height: 35px;
             }
 
+            .dropdown  {
+                margin: 5px;
+                .button {
+                    background: $sidebar-background-color;
+                    color: $dark-light;
+                }
+            }
+
             .select {
                 margin-top: 3px;
                 margin-right: 15px;
@@ -358,11 +381,25 @@
                 }
             }
 
+            .sort-order {
+                cursor: pointer;
+                line-height: 35px;
+                color: $dark-light;
+                display: inline-block;
+                user-select: none;
+                margin-right: 7px;
+                &.selected, &:hover{
+                        color: $white;
+                    }
+                
+            }
+
             .like-icon {
                 cursor: pointer;
                 line-height: 35px;
                 color: $dark-light;
                 user-select: none;
+                vertical-align: top;
                 &:hover{
                     color: $white;
                 }

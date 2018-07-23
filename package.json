@@ -46,7 +46,9 @@
         "server": "webpack-dev-server --port 3000",
         "debug": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
         "buildold": "webpack && electron .",
-        "build": "webpack && electron-packager . --out=\"C:\\Program Files\" --asar=true --icon=\"src\\assets\\icons\\poker-hub\\poker_hub_icon_01.ico\" --overwrite=true"
+        "build": "webpack && electron-packager . --out=\"C:\\Program Files\" --asar=true --icon=\"src\\assets\\icons\\poker-hub\\poker_hub_icon_01.ico\" --overwrite=true",
+        "preversion": "echo 'preversion here'",
+        "version": "echo 'version here'"
     },
     "devDependencies": {
         "babel-eslint": "^8.2.2",

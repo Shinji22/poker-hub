@@ -2,20 +2,16 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import Highcharts from 'highcharts';
 import shortid from 'shortid';
-
-import SharkscopeDB from './SharkscopeDB';
+import Storage from '../../services/storage';
 
 @inject('store')
 @observer
 export default class StatsItem extends React.Component {
     constructor(props) {
         super(props);
-        // this.props.player = props.player;
         this.store = this.props.store;
 
         this.chartID = shortid.generate();
-
-        // this.abilityLevel;
 
         if (this.props.player.stats.Ability < 60) this.abilityLevel = 'bad';
         else if (this.props.player.stats.Ability >= 60 && this.props.player.stats.Ability < 70) this.abilityLevel = 'medium';
@@ -26,24 +22,34 @@ export default class StatsItem extends React.Component {
     }
 
     componentDidMount() {
-        this.makeChart && this.makeChart();
+        if (this.makeChart) {
+            this.makeChart();
+        }
     }
 
+    /**
+     * Suppression d'un joueur
+     */
     removePlayer = () => {
         this.store.sharkscope.removePlayer(this.props.player);
     };
 
+    /**
+     * Ajout / suppression du joueur dans la liste des favoris
+     */
     favoriteHandler = () => {
-        const db = new SharkscopeDB();
         if (this.props.player.favorite !== undefined && this.props.player.favorite === true) {
             this.store.sharkscope.removeFavorite(this.props.player);
-            db.deleteFavorite(this.props.player.hash);
         } else {
             this.store.sharkscope.addFavorite(this.props.player);
-            db.addFavorite(this.props.player);
         }
+        console.log(this.store.sharkscope.favorites);
+        Storage.save(this.store.global.filenames.favorite, JSON.stringify(this.store.sharkscope.favorites));
     };
 
+    /**
+     * Création du graphique
+     */
     makeChart = () => {
         if (!this.props.player.chartData || this.props.player.chartData.length === 0) return;
         Highcharts.chart(this.chartID, {
@@ -196,18 +202,6 @@ export default class StatsItem extends React.Component {
                         <span className="stat-name">Profit moyen</span>
                         <span className="stat-value">{this.props.player.stats.AvProfit}€</span>
                     </div>
-
-                    {/* 
-                        STATS A AFFICHER
-                            - Ability
-                            - ROI total +
-                            - ROI moyen +
-                            - Count
-                            - ITM +
-                            - Mise moyenne +
-                            - Profit +
-                            - Profit moyen +
-                        */}
                 </div>
             </div>
         );

@@ -2,11 +2,7 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import shortid from 'shortid';
 import SharkscopeAPI from './SharkscopeAPI';
-import Storage from '../../services/storage';
-
-import winamaxIcon from '../../../assets/icons/networks/winamax/32x32.png';
-import partypokerIcon from '../../../assets/icons/networks/partypoker/32x32.png';
-import pokerstarsIcon from '../../../assets/icons/networks/pokerstars/32x32.png';
+// import Storage from '../../services/storage';
 
 const SearchBar = inject('store')(
     observer(({ store }) => {
@@ -43,7 +39,7 @@ const SearchBar = inject('store')(
                                 chartData,
                             };
                             store.sharkscope.addPlayer(player);
-                            Storage.save(JSON.stringify(player));
+                            // Storage.save(store.global.filenames.favorite, JSON.stringify(player));
                         }
                         searchBar.value = '';
                         store.sharkscope.setSuggestions([]);
@@ -79,7 +75,6 @@ const SearchBar = inject('store')(
 
         const getNetworkLogo = network => {
             const found = store.network.list.find(n => {
-                console.log(`${n.id} - ${network} - ${n.id === network}`);
                 return n.id === network;
             });
             if (found) return found.icon;

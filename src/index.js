@@ -6,11 +6,7 @@ import * as mobx from 'mobx';
 import App from './js/App.jsx';
 import RootStore from './js/stores/RootStore';
 
-import Storage from './js/services/storage';
-
 require('./styles/main.scss');
-
-// ReactDOM.render(<App />, document.querySelector('#root'));
 
 const store = new RootStore();
 
@@ -26,8 +22,6 @@ const renderApp = () => {
         document.querySelector('#root')
     );
 };
-
-Storage.load();
 
 renderApp();
 if (module.hot) {

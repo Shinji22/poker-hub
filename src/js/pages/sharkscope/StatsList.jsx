@@ -14,20 +14,38 @@ const StatsList = inject('store')(
         if (store.sharkscope.sortBy && store.sharkscope.sortBy !== 'none') {
             if (store.sharkscope.sortBy === 'pseudo') {
                 items = items.sort((a, b) => {
-                    if (a.pseudo.toLowerCase() < b.pseudo.toLowerCase()) return -1;
-                    if (a.pseudo.toLowerCase() > b.pseudo.toLowerCase()) return 1;
+                    if (a.pseudo.toLowerCase() < b.pseudo.toLowerCase()) {
+                        if (store.sharkscope.sortOrder === 'ASC') return -1;
+                        return 1;
+                    }
+                    if (a.pseudo.toLowerCase() > b.pseudo.toLowerCase()) {
+                        if (store.sharkscope.sortOrder === 'ASC') return 1;
+                        return -1;
+                    }
                     return 0;
                 });
             } else if (store.sharkscope.sortBy === 'ability') {
                 items = items.sort((a, b) => {
-                    if (Number(a.stats.Ability) < Number(b.stats.Ability)) return -1;
-                    if (Number(a.stats.Ability) > Number(b.stats.Ability)) return 1;
+                    if (Number(a.stats.Ability) < Number(b.stats.Ability)) {
+                        if (store.sharkscope.sortOrder === 'ASC') return -1;
+                        return 1;
+                    }
+                    if (Number(a.stats.Ability) > Number(b.stats.Ability)) {
+                        if (store.sharkscope.sortOrder === 'ASC') return 1;
+                        return -1;
+                    }
                     return 0;
                 });
             } else if (store.sharkscope.sortBy === 'count') {
                 items = items.sort((a, b) => {
-                    if (Number(a.stats.Count) < Number(b.stats.Count)) return -1;
-                    if (Number(a.stats.Count) > Number(b.stats.Count)) return 1;
+                    if (Number(a.stats.Count) < Number(b.stats.Count)) {
+                        if (store.sharkscope.sortOrder === 'ASC') return -1;
+                        return 1;
+                    }
+                    if (Number(a.stats.Count) > Number(b.stats.Count)) {
+                        if (store.sharkscope.sortOrder === 'ASC') return 1;
+                        return -1;
+                    }
                     return 0;
                 });
             }

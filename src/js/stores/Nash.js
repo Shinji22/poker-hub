@@ -1,5 +1,4 @@
-import { observable, computed, action } from 'mobx';
-import * as mobx from 'mobx';
+import { observable, action } from 'mobx';
 
 export class Nash {
     constructor(rootStore) {
@@ -8,14 +7,15 @@ export class Nash {
 
     @observable currentTab = 'push';
 
-    @action setTab(t) {
-        console.log('setTab ' + t)
+    @action
+    setTab(t) {
         this.currentTab = t;
     }
 
     @observable sliderValue = 7;
 
-    @action setSliderValue(v) {
+    @action
+    setSliderValue(v) {
         this.sliderValue = v;
     }
 }

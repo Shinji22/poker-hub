@@ -8,6 +8,8 @@ import betclicLogo from '../../assets/icons/rooms/betclic/48x48.png';
 import bwinLogo from '../../assets/icons/rooms/bwin/48x48.png';
 import pmuLogo from '../../assets/icons/rooms/pmu/48x48.png';
 import xeesterLogo from '../../assets/icons/trackers/xeester/48x48.png';
+import hmLogo from '../../assets/icons/trackers/holdem manager/48x48.png';
+import ptLogo from '../../assets/icons/trackers/poker tracker/48x48.png';
 
 export class Home {
     constructor(rootStore) {
@@ -71,7 +73,6 @@ export class Home {
             type: 'game',
             enabled: false,
         },
-
         {
             name: 'Bwin',
             defaultPath: 'C:\\Users\\tanaka\\bwin\\bwin.exe',
@@ -87,6 +88,24 @@ export class Home {
             args: [],
             path: '',
             icon: xeesterLogo,
+            type: 'tracker',
+            enabled: false,
+        },
+        {
+            name: 'Holdem Manager',
+            defaultPath: 'C:\\Program Files (x86)\\Holdem Manager\\hmanager.exe',
+            args: [],
+            path: '',
+            icon: hmLogo,
+            type: 'tracker',
+            enabled: false,
+        },
+        {
+            name: 'Poker Tracker',
+            defaultPath: 'C:\\Program Files (x86)\\poker tracker\\ptracker.exe',
+            args: [],
+            path: '',
+            icon: ptLogo,
             type: 'tracker',
             enabled: false,
         },
