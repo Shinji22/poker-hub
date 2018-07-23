@@ -359,6 +359,19 @@
                 .button {
                     background: $sidebar-background-color;
                     color: $dark-light;
+
+                    .dropdown-title {
+                        font-size: 0.9rem;
+                        margin: 0px 5px;
+                    }
+                }
+                a.dropdown-item {
+                    padding-right: 1rem;
+
+                    .column {
+                        align-self: center;
+                        padding: 6px 10px;
+                    }
                 }
             }
 
@@ -404,6 +417,17 @@
                     color: $white;
                 }
             }
+
+            .remove-all {
+                color: $dark-light;
+                font-size: 14px;
+                cursor: pointer;
+                * {
+                    vertical-align: middle;
+                }
+            }
+
+            
         }
     }
 }

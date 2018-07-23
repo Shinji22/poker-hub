@@ -56,6 +56,11 @@ export class Sharkscope {
     }
 
     @action
+    clearPlayers() {
+        this.players = [];
+    }
+
+    @action
     updatePlayer(p) {
         const idx = this.players.indexOf(p);
         if (idx > -1) {
