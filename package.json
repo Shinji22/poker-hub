@@ -1,7 +1,7 @@
 {
     "name": "poker-hub",
     "productName": "Poker HUB",
-    "version": "1.0.180722",
+    "version": "1.0.180723",
     "main": "src/electron-starter.js",
     "author": "Shinji22 <cassius_22@hotmail.com>",
     "description": "Poker HUB by Shinji",
@@ -48,9 +48,8 @@
         "build": "webpack && electron-packager . --out=\"C:\\Program Files\" --asar=true --icon=\"src\\assets\\icons\\poker-hub\\poker_hub_icon_01.ico\" --overwrite=true",
         "azerty": "echo 'message: ' + process.env.message  + ', version: '  + process.env.message",
         "commit": "git add . && git commit -m $message",
-        "preversion": "echo '> preversion' && npm run build'",
         "version": "echo '> version'",
-        "postversion": "echo '> postversion' && git push && git push --tags"
+        "postversion": "echo '> postversion' && npm run build && git push && git push --tags"
     },
     "devDependencies": {
         "babel-eslint": "^8.2.2",
