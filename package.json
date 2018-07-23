@@ -46,8 +46,7 @@
         "server": "webpack-dev-server --port 3000",
         "debug": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
         "build": "webpack && electron-packager . --out=\"C:\\Program Files\" --asar=true --icon=\"src\\assets\\icons\\poker-hub\\poker_hub_icon_01.ico\" --overwrite=true",
-        "azerty": "echo 'message: ' + process.env.message  + ',  version: '  + process.env.message",
-        "commit": "git add . && git commit -m $message",
+        "commit": "git add . && git commit -m process.env.message",
         "version": "echo '> version'",
         "postversion": "echo '> postversion' && npm run build && git push && git push --tags"
     },
