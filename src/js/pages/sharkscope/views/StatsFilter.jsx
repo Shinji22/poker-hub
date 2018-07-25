@@ -1,7 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import shortid from 'shortid';
-import Checkbox from '../../components/Checkbox.jsx';
+import Checkbox from '../../../components/Checkbox.jsx';
 
 const StatsFilter = inject('store')(
     observer(({ store }) => {
@@ -114,8 +113,8 @@ const StatsFilter = inject('store')(
                         <i className="material-icons">clear</i> Tout supprimer
                     </a>
                 ) : (
-                    ''
-                )}
+                        ''
+                    )}
             </div>
         );
     })

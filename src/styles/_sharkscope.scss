@@ -7,7 +7,7 @@
     .left {
         padding: 10px 15px;
         width: 250px;
-        border-right: 1px solid $sidebar-background-color;  /* #404047 */;
+        border-right: 1px solid $dark;  /* #404047 */;
         position: absolute;
         top: 0px;
         left: 0px;
@@ -343,9 +343,7 @@
         }
 
         .stats-filter {
-            height: 60px;
-            border-bottom: 1px solid $sidebar-background-color;
-            padding: 15px;
+            padding: 10px 15px 0px;
 
             label {
                 margin-right: 10px;
@@ -359,6 +357,7 @@
                 .button {
                     background: $sidebar-background-color;
                     color: $dark-light;
+                    border-color: $dark;
 
                     .dropdown-title {
                         font-size: 0.9rem;
@@ -428,6 +427,86 @@
             }
 
             
+        } 
+
+        .tabs.is-boxed {
+            ul {
+                padding-left: 0px;
+                margin-left: 20px;
+                border-bottom: 1px solid $dark;
+
+                li {
+                    a {
+                        color: $dark-light;
+                        padding-right: 5px;
+                        margin-bottom: -3px;
+                        max-height: 32px;
+
+                        &.add-tab {
+                            font-size: 20px;
+                            padding-right: 7px;
+                            padding-left: 7px;
+                        }
+
+                        &:hover {
+                            border-color: $dark;
+                            background: transparent !important;
+                            border-bottom-color: transparent !important;
+                            .delete{ 
+                                visibility: visible;
+                            }
+                        }
+
+                        .delete {
+                            margin-left: 10px;
+                            visibility: hidden;
+                        }
+                    }
+                    
+                    &.is-active a {
+                        background: $sidebar-background-color;
+                        color: $white;
+                        border-color: $dark;
+                        border-bottom-color: transparent !important;
+                    }
+                }
+            }
+        }
+
+        #create-tab {
+            .modal-background {
+                background-color: rgba(10,10,10,.5)
+            }
+
+            .modal-content {
+                width: auto;
+                display: inline-block;
+                background: $content-background-color;
+                padding: 20px 30px;
+                overflow-x: hidden;
+                overflow-y: visible;
+                .create-tab-form {
+                    .label {
+                        color: $dark-light;
+                        font-size: 0.9em;
+                        line-height: 30px;
+                    }
+                    input {
+                        width: 150px;
+                        color: $dark-light;
+                        background: $sidebar-background-color;
+                        border-color: $dark-light;
+                        &:focus, &:active {
+                            border-color: $white;
+                        }
+                    }
+                }
+                button {
+                    background: $sidebar-background-color;
+                    color: $dark-light;
+                    border-color: $dark;
+                }
+            }
         }
     }
 }

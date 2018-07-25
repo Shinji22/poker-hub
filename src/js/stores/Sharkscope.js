@@ -1,5 +1,7 @@
-import { observable, action } from 'mobx';
+import { observable, computed, action, toJS } from 'mobx';
 import SHA256 from 'crypto-js/sha256';
+import shortid from 'shortid';
+import SharkscopeTab from '../pages/sharkscope/models/SharkscopeTab';
 
 export class Sharkscope {
     constructor(rootStore) {
@@ -7,12 +9,12 @@ export class Sharkscope {
     }
 
     /**
-     * Tabs
+     * View
      */
-    @observable tab = 'search'; // search / favorites
+    @observable view = 'search'; // search / favorites
     @action
-    setTab(t) {
-        this.tab = t;
+    setView(t) {
+        this.view = t;
     }
 
     /**
@@ -26,13 +28,49 @@ export class Sharkscope {
     }
 
     /**
+     * Tabs
+     */
+
+    @observable tabs = [];
+
+    @observable currentTab;
+
+    @action
+    setTab(t) {
+        this.currentTab = t;
+    }
+
+    // Ajout d'une tabulation
+    @action
+    addTab(name) {
+        const tab = new SharkscopeTab(name);
+        this.tabs.push(tab);
+        this.setTab(tab);
+    }
+
+    @action
+    removeTab(tab) {
+        this.tabs.remove(tab);
+    }
+
+    @observable createTab = false;
+    @action
+    showCreateTab(val) {
+        this.createTab = val;
+    }
+
+    /**
      * Players
      */
-    @observable players = [];
+    @computed
+    get players() {
+        console.log('>>> refresh');
+        return this.currentTab.players;
+    }
 
     @action
     getPlayer(p) {
-        return this.players.find(player => player.pseudo === p.pseudo && player.network === p.network);
+        return this.currentTab.players.find(player => player.pseudo === p.pseudo && player.network === p.network);
     }
 
     @action
@@ -40,31 +78,31 @@ export class Sharkscope {
         if (force) {
             const old = this.getPlayer(p);
             this.removePlayer(old);
-            this.players.push(p);
+            this.currentTab.players.push(p);
         } else if (!this.getPlayer(p)) {
             p.hash = SHA256(p.pseudo + p.network).toString();
-            this.players.push(p);
+            this.currentTab.players.push(p);
         }
     }
 
     @action
     removePlayer(p) {
-        const idx = this.players.indexOf(p);
+        const idx = this.currentTab.players.indexOf(p);
         if (idx > -1) {
-            this.players.splice(idx, 1);
+            this.currentTab.players.splice(idx, 1);
         }
     }
 
     @action
     clearPlayers() {
-        this.players = [];
+        this.currentTab.players = [];
     }
 
     @action
     updatePlayer(p) {
-        const idx = this.players.indexOf(p);
+        const idx = this.currentTab.players.indexOf(p);
         if (idx > -1) {
-            this.players[idx] = p;
+            this.currentTab.players[idx] = p;
         }
     }
 
@@ -80,25 +118,27 @@ export class Sharkscope {
 
     @action
     addFavorite(p) {
-        const idx = this.players.findIndex(player => player.pseudo === p.pseudo && player.network === p.network);
+        const idx = this.currentTab.players.findIndex(player => player.pseudo === p.pseudo && player.network === p.network);
         if (idx > -1) {
-            this.players[idx].favorite = true;
-            const fav = Object.assign({}, this.players[idx]);
+            this.currentTab.players[idx].favorite = true;
+            const fav = Object.assign({}, this.currentTab.players[idx]);
             fav.favoriteDate = new Date().toLocaleDateString();
             this.favorites.push(fav);
         }
-        this.players.replace(this.players);
+        // TODO: supprimer ?
+        this.currentTab.players.replace(this.currentTab.players);
     }
 
     @action
     removeFavorite(p) {
-        const idx = this.players.findIndex(player => player.pseudo === p.pseudo && player.network === p.network);
+        const idx = this.currentTab.players.findIndex(player => player.pseudo === p.pseudo && player.network === p.network);
         if (idx > -1) {
-            this.players[idx].favorite = false;
+            this.currentTab.players[idx].favorite = false;
         }
-        this.players.replace(this.players);
+        // TODO: supprimer ?
+        this.currentTab.players.replace(this.currentTab.players);
 
-        const favIdx = this.players.findIndex(player => player.pseudo === p.pseudo && player.network === p.network);
+        const favIdx = this.currentTab.players.findIndex(player => player.pseudo === p.pseudo && player.network === p.network);
         if (favIdx > -1) {
             this.favorites.splice(favIdx, 1);
         }
@@ -106,7 +146,7 @@ export class Sharkscope {
 
     @action
     updateFavorite(p) {
-        const favIdx = this.players.findIndex(player => player.pseudo === p.pseudo && player.network === p.network);
+        const favIdx = this.currentTab.players.findIndex(player => player.pseudo === p.pseudo && player.network === p.network);
         if (favIdx > -1) {
             p.favorite = true;
             p.favoriteDate = new Date().toLocaleDateString();

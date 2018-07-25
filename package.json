@@ -44,15 +44,15 @@
     },
     "scripts": {
         "server": "webpack-dev-server --port 3000",
-        "debug": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
+        "debug": "set ELECTRON_START_URL=http://localhost:3000 && set MODE=debug && electron .",
         "build": "webpack && electron-packager . --out=\"C:\\Program Files\" --asar=true --icon=\"src\\assets\\icons\\poker-hub\\poker_hub_icon_01.ico\" --overwrite=true",
         "commit": "git add . && git commit -m process.env.message",
-        "version": "echo '> version'",
-        "postversion": "echo '> postversion' && npm run build && git push && git push --tags"
+        "postversion": "npm run build && git push && git push --tags"
     },
     "devDependencies": {
         "babel-eslint": "^8.2.2",
         "babel-plugin-transform-async-to-generator": "^6.24.1",
-        "electron": "^2.0.2"
+        "electron": "^2.0.2",
+        "electron-context-menu": "^0.10.0"
     }
 }

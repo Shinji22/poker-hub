@@ -1,8 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import shortid from 'shortid';
-import SharkscopeAPI from './SharkscopeAPI';
-// import Storage from '../../services/storage';
+import SharkscopeAPI from '../services/SharkscopeAPI';
 
 const SearchBar = inject('store')(
     observer(({ store }) => {
@@ -39,7 +38,6 @@ const SearchBar = inject('store')(
                                 chartData,
                             };
                             store.sharkscope.addPlayer(player);
-                            // Storage.save(store.global.filenames.favorite, JSON.stringify(player));
                         }
                         searchBar.value = '';
                         store.sharkscope.setSuggestions([]);

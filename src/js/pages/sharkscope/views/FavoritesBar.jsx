@@ -1,8 +1,8 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import shortid from 'shortid';
-import SharkscopeAPI from './SharkscopeAPI';
-import Storage from '../../services/storage';
+import SharkscopeAPI from '../services/SharkscopeAPI';
+import Storage from '../../../services/storage';
 
 @inject('store')
 @observer
@@ -71,8 +71,8 @@ class FavoritesBar extends React.Component {
                         })
                         .map(fav => (
                             <li
-                              key={shortid.generate()}
-                              onClick={e => {
+                                key={shortid.generate()}
+                                onClick={e => {
                                     this.onFavoriteClickhandler(e, fav);
                                 }}>
                                 <img src={this.getNetworkLogo(fav.network)} alt=" " />
@@ -82,10 +82,10 @@ class FavoritesBar extends React.Component {
                                     <span className="date">{fav.favoriteDate}</span>
                                 </p>
                                 <i
-                                  onClick={e => {
+                                    onClick={e => {
                                         this.onRefreshHandler(e, fav);
                                     }}
-                                  className="material-icons sync-favorite">
+                                    className="material-icons sync-favorite">
                                     sync
                                 </i>
                             </li>

@@ -11,7 +11,12 @@ const url = require('url');
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
+
 function createWindow() {
+    if (process.env.MODE && process.env.MODE.trim() === 'debug') {
+        require('electron-context-menu')();
+    }
+
     // Create the browser window.
     mainWindow = new BrowserWindow({
         width: 1500,

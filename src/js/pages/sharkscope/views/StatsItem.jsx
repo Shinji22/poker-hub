@@ -2,7 +2,7 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import Highcharts from 'highcharts';
 import shortid from 'shortid';
-import Storage from '../../services/storage';
+import Storage from '../../../services/storage';
 
 @inject('store')
 @observer

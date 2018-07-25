@@ -234,7 +234,7 @@ const Push = inject('store')(observer(({ store }) => {
                     </tr>
                 </tbody>
             </table>
-           <Slider />
+            <Slider />
         </div>
     );
 }));
