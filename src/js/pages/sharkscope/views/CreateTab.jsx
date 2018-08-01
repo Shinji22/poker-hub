@@ -1,10 +1,11 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 
+import IconSelector from './IconSelector.jsx';
+
 @inject('store')
 @observer
 export default class CreateTab extends React.Component {
-
     constructor(props) {
         super(props);
         this.store = this.props.store;
@@ -35,6 +36,19 @@ export default class CreateTab extends React.Component {
                     <div className="create-tab-form">
                         <div className="field is-horizontal columns">
                             <div className="field-label column">
+                                <label className="label">Icône</label>
+                            </div>
+                            <div className="field-body column is-narrow">
+                                <div className="field">
+                                    <div className="control">
+                                        <IconSelector />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="field is-horizontal columns">
+                            <div className="field-label column">
                                 <label className="label">Nom</label>
                             </div>
                             <div className="field-body column is-narrow">
@@ -46,7 +60,9 @@ export default class CreateTab extends React.Component {
                             </div>
                         </div>
 
-                        <button className="button is-small is-pulled-right" onClick={this.addTab}>Ajouter</button>
+                        <button className={this.state.name.length > 0 ? 'button is-small is-pulled-right' : 'button is-small is-pulled-right is-static'} onClick={this.addTab}>
+                            Ajouter
+                        </button>
                     </div>
                 </div>
             </div>

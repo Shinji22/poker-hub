@@ -37,26 +37,38 @@ export class Sharkscope {
 
     @action
     setTab(t) {
+        console.log('setTab', t);
         this.currentTab = t;
     }
 
     // Ajout d'une tabulation
     @action
     addTab(name) {
-        const tab = new SharkscopeTab(name);
+        const tab = new SharkscopeTab(name, this.newTabIcon);
         this.tabs.push(tab);
         this.setTab(tab);
     }
 
     @action
     removeTab(tab) {
+        const isCurrentTab = tab === this.currentTab;
+        console.log('isCurrentTab', isCurrentTab);
         this.tabs.remove(tab);
+        if (isCurrentTab && this.tabs.length > 0) {
+            this.setTab(this.tabs[this.tabs.length - 1]);
+        }
     }
 
     @observable createTab = false;
     @action
     showCreateTab(val) {
         this.createTab = val;
+    }
+
+    @observable newTabIcon = null;
+    @action
+    setNewTabIcon(icon) {
+        this.newTabIcon = icon;
     }
 
     /**

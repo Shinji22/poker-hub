@@ -461,6 +461,12 @@
                             margin-left: 10px;
                             visibility: hidden;
                         }
+                        .tabIcon {
+                            margin-left: -3px;
+                            margin-right: 5px;
+                            width: 20px;
+                            height: 20px;
+                        }
                     }
                     
                     &.is-active a {
@@ -483,8 +489,7 @@
                 display: inline-block;
                 background: $content-background-color;
                 padding: 20px 30px;
-                overflow-x: hidden;
-                overflow-y: visible;
+                overflow: visible;
                 .create-tab-form {
                     .label {
                         color: $dark-light;
@@ -500,11 +505,80 @@
                             border-color: $white;
                         }
                     }
+
+                    .field-body {
+                        .field {
+                            width: 150px;
+                        }
+                    }
                 }
                 button {
                     background: $sidebar-background-color;
-                    color: $dark-light;
-                    border-color: $dark;
+                    color: $white;
+                    border-color: $dark-light;
+
+                    &.is-static {
+                        color: $dark-light;
+                        border-color: $dark;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.icon-selector {
+    .no-icon {
+        vertical-align: middle;
+        color: $dark-light;
+        background: rgba(255,255,255,0.1);
+        border-radius: 2px;
+    }
+
+    .dropdown-trigger {
+        .button {
+            padding-top: 1px;
+            border-color: $dark-light !important;
+            .no-icon {
+                width: 19px;
+                height: 19px;
+                font-size: 19px;
+            }    
+            img {
+                width: 21px;
+                height: 21px;
+                vertical-align: middle;
+            }   
+        }
+    }
+
+    .dropdown-menu{
+        min-width: 0px;
+
+        .dropdown-content {
+            background: $sidebar-background-color;
+            border-color: $dark-light;
+            a {
+                &:hover {
+                    background-color: $dark-light;
+
+                    .no-icon {
+                        color: $dark;
+                        background: rgba(0,0,0,0.1);
+                    }
+                }
+                padding: 7px;
+
+                img {
+                    vertical-align: middle;
+                    width: 24px;
+                    height: 24px;
+                }
+
+                .no-icon {
+                    width: 24px;
+                    height: 24px;
+                    font-size: 24px;
                 }
             }
         }
