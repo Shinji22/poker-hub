@@ -1,7 +1,7 @@
 {
   "name": "poker-hub",
   "productName": "Poker HUB",
-  "version": "1.0.180801",
+  "version": "1.0.180802",
   "main": "src/electron-starter.js",
   "author": "Shinji22 <cassius_22@hotmail.com>",
   "description": "Poker HUB by Shinji",
