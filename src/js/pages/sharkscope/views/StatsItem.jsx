@@ -48,6 +48,30 @@ export default class StatsItem extends React.Component {
     };
 
     /**
+     * Synchronize les données d'un favoris
+     */
+    synchronizeFavorite = () => {
+        const api = new SharkscopeAPI();
+        const { player } = this.props;
+        api.getStats(player.pseudo, player.network).then(res => {
+            const stats = api.formatStatsResponse(res);
+            const chartData = api.formatChartData(res);
+            if (stats) {
+                const p = {
+                    pseudo: player.pseudo,
+                    network: player.network,
+                    stats,
+                    chartData,
+                };
+                p.hash = player.hash;
+                this.store.sharkscope.addPlayer(p, true);
+                this.store.sharkscope.updateFavorite(p);
+                Storage.save(this.store.global.filenames.favorite, JSON.stringify(this.store.sharkscope.favorites));
+            }
+        });
+    };
+
+    /**
      * Création du graphique
      */
     makeChart = () => {
@@ -161,6 +185,13 @@ export default class StatsItem extends React.Component {
                 <i className="material-icons md-light like-icon" onClick={this.favoriteHandler} title="Ajouter aux favoris">
                     {this.props.player.favorite !== undefined && this.props.player.favorite === true ? 'favorite' : 'favorite_border'}
                 </i>
+                {this.props.player.favorite ? (
+                    <i title="Synchroniser les données du favori" className="material-icons  md-light sync-icon" onClick={this.synchronizeFavorite}>
+                        sync
+                    </i>
+                ) : (
+                    ''
+                )}
 
                 {this.props.player.chartData && this.props.player.chartData.length > 0 ? <div className="chart" id={this.chartID} /> : <p className="no-chart">Aucune donnée à afficher</p>}
 

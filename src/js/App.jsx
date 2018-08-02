@@ -11,6 +11,7 @@ import Nash from './pages/nash/Nash.jsx';
 const App = inject('store')(
     observer(({ store }) => {
         const page = store.global.currentRoute;
+
         return (
             <div>
                 <Sidebar />

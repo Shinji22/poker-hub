@@ -5,10 +5,13 @@ import { Provider } from 'mobx-react';
 import * as mobx from 'mobx';
 import App from './js/App.jsx';
 import RootStore from './js/stores/RootStore';
+import config from './js/services/config';
 
 require('./styles/main.scss');
 
 const store = new RootStore();
+// Initialisation du store
+config.initStore(store);
 
 mobx.useStrict(true);
 

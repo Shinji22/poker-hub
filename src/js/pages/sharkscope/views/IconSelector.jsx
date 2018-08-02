@@ -41,8 +41,8 @@ export default class IconSelector extends React.Component {
                         {this.store.home.soft.map(s => {
                             if (s.type === 'game') {
                                 return (
-                                    <a href="#" onClick={() => this.selectIcon(s.icon)} key={shortid.generate()} className="dropdown-item">
-                                        <img src={s.icon} alt="icon" />
+                                    <a href="#" onClick={() => this.selectIcon(s.icon.icon32x32)} key={shortid.generate()} className="dropdown-item">
+                                        <img src={s.icon.icon32x32} alt="icon" />
                                     </a>
                                 );
                             }

@@ -41,15 +41,14 @@ const Home = inject('store')(
                                     <div key={shortid.generate()} className="soft-item">
                                         {soft.enabled ? (
                                             <a
-                                                onClick={() => {
+                                              onClick={() => {
                                                     launch(soft);
-                                                }}
-                                            >
-                                                <img src={soft.icon} alt="icon" className="soft-icon" />
+                                                }}>
+                                                <img src={soft.icon.icon48x48} alt="icon" className="soft-icon" />
                                             </a>
                                         ) : (
-                                                <img src={soft.icon} alt="icon" className="soft-icon disabled" />
-                                            )}
+                                            <img src={soft.icon.icon48x48} alt="icon" className="soft-icon disabled" />
+                                        )}
                                     </div>
                                 );
                             return null;
@@ -63,15 +62,14 @@ const Home = inject('store')(
                                     <div key={shortid.generate()} className="soft-item">
                                         {soft.enabled ? (
                                             <a
-                                                onClick={() => {
+                                              onClick={() => {
                                                     launch(soft);
-                                                }}
-                                            >
-                                                <img src={soft.icon} alt="icon" className="soft-icon" />
+                                                }}>
+                                                <img src={soft.icon.icon48x48} alt="icon" className="soft-icon" />
                                             </a>
                                         ) : (
-                                                <img src={soft.icon} alt="icon" className="soft-icon disabled" />
-                                            )}
+                                            <img src={soft.icon.icon48x48} alt="icon" className="soft-icon disabled" />
+                                        )}
                                     </div>
                                 );
                             return null;
@@ -85,8 +83,8 @@ const Home = inject('store')(
                         </a>{' '}
                     </div>
                 ) : (
-                        ''
-                    )}
+                    ''
+                )}
 
                 <img src={logoLight} id="home-logo" alt="" />
             </div>

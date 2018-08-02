@@ -24,7 +24,21 @@ export class Sharkscope {
 
     @action
     setSuggestions(a) {
+        a.forEach(s => {
+            if (this.suggestionIsfavorite(s)) {
+                console.log('> favorite', s);
+                s.favorite = true;
+            } else {
+                console.log('> not favorite', s);
+            }
+        });
         this.suggestions = a;
+    }
+
+    @action
+    suggestionIsfavorite(s) {
+        const idx = this.favorites.findIndex(f => f.pseudo === s['@name'] && f.network === s['@network']);
+        return idx > -1;
     }
 
     /**
@@ -37,7 +51,6 @@ export class Sharkscope {
 
     @action
     setTab(t) {
-        console.log('setTab', t);
         this.currentTab = t;
     }
 
@@ -52,7 +65,6 @@ export class Sharkscope {
     @action
     removeTab(tab) {
         const isCurrentTab = tab === this.currentTab;
-        console.log('isCurrentTab', isCurrentTab);
         this.tabs.remove(tab);
         if (isCurrentTab && this.tabs.length > 0) {
             this.setTab(this.tabs[this.tabs.length - 1]);
@@ -76,7 +88,6 @@ export class Sharkscope {
      */
     @computed
     get players() {
-        console.log('>>> refresh');
         return this.currentTab.players;
     }
 
@@ -139,6 +150,19 @@ export class Sharkscope {
         }
         // TODO: supprimer ?
         this.currentTab.players.replace(this.currentTab.players);
+    }
+
+    @action
+    getFavorite(pseudo, network) {
+        const idx = this.favorites.findIndex(f => f.pseudo === pseudo && f.network === network);
+        if (idx > -1) return this.favorites[idx];
+        return null;
+    }
+
+    @action
+    isFavorite(p) {
+        const idx = this.favorites.findIndex(f => f.pseudo === p.pseudo && f.network === p.network);
+        return idx > -1;
     }
 
     @action

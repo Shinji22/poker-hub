@@ -16,6 +16,7 @@ class FavoritesBar extends React.Component {
      * Affichage des stats d'un favori
      */
     onFavoriteClickhandler = (event, player) => {
+        // TODO: ??
         if (event.target.classList.contains('sync-favorite')) {
             console.log('synchronisation du favori');
         } else {
@@ -55,7 +56,7 @@ class FavoritesBar extends React.Component {
         const found = this.store.network.list.find(n => {
             return n.id === network;
         });
-        if (found) return found.icon;
+        if (found) return found.icon.icon32x32;
         return '';
     };
 
@@ -71,8 +72,8 @@ class FavoritesBar extends React.Component {
                         })
                         .map(fav => (
                             <li
-                                key={shortid.generate()}
-                                onClick={e => {
+                              key={shortid.generate()}
+                              onClick={e => {
                                     this.onFavoriteClickhandler(e, fav);
                                 }}>
                                 <img src={this.getNetworkLogo(fav.network)} alt=" " />
@@ -82,10 +83,10 @@ class FavoritesBar extends React.Component {
                                     <span className="date">{fav.favoriteDate}</span>
                                 </p>
                                 <i
-                                    onClick={e => {
+                                  onClick={e => {
                                         this.onRefreshHandler(e, fav);
                                     }}
-                                    className="material-icons sync-favorite">
+                                  className="material-icons sync-favorite">
                                     sync
                                 </i>
                             </li>
