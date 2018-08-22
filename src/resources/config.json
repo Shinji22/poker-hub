@@ -1,0 +1,107 @@
+{
+    "global": {
+        "sidebarExpanded": false
+    },
+    "home": {
+        "twitterDisplay": true,
+        "twitterSource": "PokerNewsFrance"
+    },
+    "soft": {
+        "rooms": {
+            "list": [
+                {
+                    "name": "Winamax",
+                    "defaultPath": "C:\\Users\\tanaka\\Winamax\\Winamax Poker\\Winamax Poker.exe",
+                    "args": []
+                },
+                {
+                    "name": "PokerStars",
+                    "defaultPath": "C:\\Program Files (x86)\\PokerStars.FR\\PokerStarsUpdate.exe",
+                    "args": []
+                },
+                {
+                    "name": "PartyPoker",
+                    "defaultPath": "C:\\Programs\\PartyFrance\\PartyFrance.exe",
+                    "args": [
+                        "-P=PartyPokerFr"
+                    ]
+                },
+                {
+                    "name": "Unibet",
+                    "defaultPath": "C:\\Program Files (x86)\\Unibet.fr\\casino.exe",
+                    "args": []
+                },
+                {
+                    "name": "PMU",
+                    "defaultPath": "C:\\Users\\tanaka\\pmu\\pmu.exe",
+                    "args": []
+                },
+                {
+                    "name": "Betclic",
+                    "defaultPath": "C:\\Users\\tanaka\\betclic\\betclic.exe",
+                    "args": []
+                },
+                {
+                    "name": "Bwin",
+                    "defaultPath": "C:\\Users\\tanaka\\bwin\\bwin.exe",
+                    "args": []
+                }
+            ]
+        },
+        "trackers": {
+            "list": [
+                {
+                    "name": "Xeester",
+                    "defaultPath": "C:\\Program Files (x86)\\Xeester\\xeester-update.exe",
+                    "args": []
+                },
+                {
+                    "name": "Holdem Manager",
+                    "defaultPath": "C:\\Program Files (x86)\\Holdem Manager\\hmanager.exe",
+                    "args": []
+                },
+                {
+                    "name": "Xeester",
+                    "defaultPath": "C:\\Program Files (x86)\\poker tracker\\ptracker.exe",
+                    "args": []
+                }
+            ]
+        }
+    },
+    "rooms": {},
+    "networks": {
+        "list": [
+            {
+                "name": "Winamax",
+                "id": "Winamax.fr"
+            },
+            {
+                "name": "PokerStars",
+                "id": "PokerStars(FR-ES-PT)"
+            },
+            {
+                "name": "PartyPoker",
+                "id": "PartyPoker(FR-ES)"
+            },
+            {
+                "name": "iPoker",
+                "id": "iPoker.fr"
+            },
+            {
+                "name": "Ongame",
+                "id": "Ongame"
+            }
+        ]
+    },
+    "trackers": {},
+    "sharkscope": {
+        "defaultTabName": "Tab",
+        "defaultSortBy": null,
+        "defaultSortOrder": "ASC",
+        "preferFavorite": true,
+        "account": {
+            "username": null,
+            "password": null
+        }
+    }
+}

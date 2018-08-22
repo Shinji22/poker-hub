@@ -1,12 +1,15 @@
 import { observable } from 'mobx';
 
-const shortId = require('shortid');
-
 export default class SharkscopeTab {
-    constructor(name, icon) {
-        this.id = observable(shortId.generate());
+    @observable id;
+    @observable name;
+    @observable players;
+    @observable icon;
+
+    constructor(id, name, icon) {
+        this.id = id;
         this.name = name;
-        this.players = observable([]);
+        this.players = [];
         this.icon = icon;
     }
 }

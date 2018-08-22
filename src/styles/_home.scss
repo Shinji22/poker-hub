@@ -4,7 +4,10 @@
     position: relative;
 
     .home-launcher {
-        margin-right: 350px;
+        margin-right: 0px;
+        &.with-social {
+            margin-right: 350px;
+        }
     }
 
     .home-twitter {
@@ -13,7 +16,7 @@
         right: 35px;
         width: 320px;
         overflow-x: hidden;
-    }
+    } 
 
     h4 {
         color: $dark-light;

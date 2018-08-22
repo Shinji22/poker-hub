@@ -1,19 +1,44 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import shortid from 'shortid';
+import SharkscopeTab from '../models/SharkscopeTab';
 
 const Tabs = inject('store')(
     observer(({ store }) => {
+        /**
+         * Sélection d'un onglet
+         * @param {event} event
+         * @param {SharkscopeTab} tab
+         */
         const selectTab = (event, tab) => {
             if (event.target.nodeName.toLowerCase() !== 'button') {
                 store.sharkscope.setTab(tab);
             }
         };
 
+        /**
+         * Edition d'un onglet
+         * @param {event} event
+         * @param {SharkscopeTab} tab
+         */
+        const editTab = (event, tab) => {
+            event.preventDefault();
+            store.sharkscope.setEditedTab(tab);
+            store.sharkscope.showEditTab(true);
+        };
+
+        /**
+         * Ajout d'un onglet
+         */
         const addTab = () => {
+            store.sharkscope.setEditedTab(new SharkscopeTab(shortid.generate(), '', null));
             store.sharkscope.showCreateTab(true);
         };
 
+        /**
+         * Suppression d'un onglet
+         * @param {SharkscopeTab} tab
+         */
         const removeTab = tab => {
             store.sharkscope.removeTab(tab);
         };
@@ -22,11 +47,14 @@ const Tabs = inject('store')(
             <div className="tabs is-small is-boxed">
                 <ul>
                     {store.sharkscope.tabs.map(tab => (
-                        <li
-className={tab.id === store.sharkscope.currentTab.id ? 'is-active' : ''} key={shortid.generate()}>
+                        <li className={tab.id === store.sharkscope.currentTab.id ? 'is-active' : ''}
+key={shortid.generate()}>
                             <a
                               onClick={e => {
                                     selectTab(e, tab);
+                                }}
+                              onContextMenu={e => {
+                                    editTab(e, tab);
                                 }}>
                                 {tab.icon ? <img src={tab.icon} className="tabIcon" alt="" /> : ''}
 

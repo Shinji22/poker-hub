@@ -26,16 +26,16 @@ const Home = inject('store')(
         addScript.setAttribute('src', 'https://platform.twitter.com/widgets.js');
         document.body.appendChild(addScript);
 
-        store.home.soft.forEach(s => {
+        store.soft.list.forEach(s => {
             if (fs.existsSync(s.defaultPath)) s.enabled = true;
         });
 
         return (
             <div className="home-page">
-                <div className="home-launcher">
+                <div className={store.home.twitterDisplay === true ? 'home-launcher with-social' : 'home-launcher'}>
                     <h4>Logiciels Poker</h4>
                     <div className="item-list">
-                        {store.home.soft.map(soft => {
+                        {store.soft.list.map(soft => {
                             if (soft.type === 'game')
                                 return (
                                     <div key={shortid.generate()} className="soft-item">
@@ -56,7 +56,7 @@ const Home = inject('store')(
                     </div>
                     <h4>Trackers</h4>
                     <div className="item-list">
-                        {store.home.soft.map(soft => {
+                        {store.soft.list.map(soft => {
                             if (soft.type === 'tracker')
                                 return (
                                     <div key={shortid.generate()} className="soft-item">

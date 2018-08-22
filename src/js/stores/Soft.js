@@ -1,15 +1,15 @@
 import { observable, action } from 'mobx';
 
-export class Network {
+export class Soft {
     constructor(rootStore) {
         this.rootStore = rootStore;
     }
 
-    // liste des networks
+    // liste des logiciels
     @observable list = [];
 
     @action
-    addNetwork(n) {
-        this.list.push(n);
+    addSoft(s) {
+        this.list.push(s);
     }
 }

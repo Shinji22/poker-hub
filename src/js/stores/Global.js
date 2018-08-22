@@ -15,7 +15,7 @@ export class Global {
 
     @observable
     filenames = {
-        configDefault: `${this.configPath} config.json`,
+        configDefault: `../../resources/config.json`,
         configUser: `${this.configPath} config-user.json`,
         favorite: `${this.configPath} favorites.json`,
     };
@@ -35,7 +35,7 @@ export class Global {
         }
     }
 
-    @observable sidebarExpanded = false;
+    @observable sidebarExpanded;
     @action
     toggleSidebar(value) {
         if (value !== undefined) {
@@ -43,5 +43,10 @@ export class Global {
         } else {
             this.sidebarExpanded = !this.sidebarExpanded;
         }
+    }
+
+    @action
+    setSidebarExpanded(v) {
+        this.sidebarExpanded = v;
     }
 }

@@ -1,87 +1,69 @@
 import Room from '../models/Room';
 import Tracker from '../models/Tracker';
 import Network from '../models/Network';
-import { toJS } from 'mobx';
+
+const DEFAULT_CONFIG = require('../../resources/config.json');
 
 const config = (() => {
     /**
      * Initialisation de la liste des networks
      */
-    const initRooms = store => {
-        // TODO: charger depuis un fichier de config
-        const wina = new Room('Winamax');
-        wina.defaultPath = 'C:\\Users\\tanaka\\Winamax\\Winamax Poker\\Winamax Poker.exe';
-        store.home.addSoft(wina);
+    const initSoft = store => {
+        // liste des rooms
+        DEFAULT_CONFIG.soft.rooms.list.forEach(r => {
+            const room = new Room(r.name);
+            room.defaultPath = r.defaultPath;
+            room.args = r.args;
+            store.soft.addSoft(room);
+        });
 
-        const ps = new Room('PokerStars');
-        ps.defaultPath = 'C:\\Program Files (x86)\\PokerStars.FR\\PokerStarsUpdate.exe';
-        store.home.addSoft(ps);
-
-        const pp = new Room('PartyPoker');
-        pp.defaultPath = 'C:\\Programs\\PartyFrance\\PartyFrance.exe';
-        pp.args = [' -P=PartyPokerFr'];
-        store.home.addSoft(pp);
-
-        const unibet = new Room('Unibet');
-        unibet.defaultPath = 'C:\\Program Files (x86)\\Unibet.fr\\casino.exe';
-        store.home.addSoft(unibet);
-
-        const pmu = new Room('PMU');
-        pmu.defaultPath = 'C:\\Users\\tanaka\\pmu\\pmu.exe';
-        store.home.addSoft(pmu);
-
-        const betclic = new Room('Betclic');
-        betclic.defaultPath = 'C:\\Users\\tanaka\\betclic\\betclic.exe';
-        store.home.addSoft(betclic);
-
-        const bwin = new Room('Bwin');
-        bwin.defaultPath = 'C:\\Users\\tanaka\\bwin\\bwin.exe';
-        store.home.addSoft(bwin);
-
-        const xeester = new Tracker('Xeester');
-        xeester.defaultPath = 'C:\\Program Files (x86)\\Xeester\\xeester-update.exe';
-        store.home.addSoft(xeester);
-
-        const hm = new Tracker('Holdem Manager');
-        hm.defaultPath = 'C:\\Program Files (x86)\\Holdem Manager\\hmanager.exe';
-        store.home.addSoft(hm);
-
-        const pt = new Tracker('Poker Tracker');
-        pt.defaultPath = 'C:\\Program Files (x86)\\poker tracker\\ptracker.exe';
-        store.home.addSoft(pt);
+        // liste des trackers
+        DEFAULT_CONFIG.soft.trackers.list.forEach(t => {
+            const tracker = new Tracker(t.name);
+            tracker.defaultPath = t.defaultPath;
+            tracker.args = t.args;
+            store.soft.addSoft(tracker);
+        });
     };
 
     /**
      * Initialisation de la liste des networks
      */
     const initNetworks = store => {
-        // TODO: charger depuis un fichier de config
-        const wina = new Network('Winamax', 'Winamax.fr');
-        store.network.addNetwork(wina);
+        DEFAULT_CONFIG.networks.list.forEach(n => {
+            store.network.addNetwork(new Network(n.name, n.id));
+        });
+    };
 
-        const ps = new Network('PokerStars', 'PokerStars(FR-ES-PT)');
-        store.network.addNetwork(ps);
+    /**
+     * Initialisation de la vue Home
+     * @param {object} store
+     */
+    const initHome = store => {
+        store.home.setTwitterDisplay(DEFAULT_CONFIG.home.twitterDisplay);
+        store.home.setTwitterSource(DEFAULT_CONFIG.home.twitterSource);
+    };
 
-        const pp = new Network('PartyPoker', 'PartyPoker(FR-ES)');
-        store.network.addNetwork(pp);
-
-        const iPoker = new Network('iPoker', 'iPoker.fr');
-        store.network.addNetwork(iPoker);
-
-        const ongame = new Network('Ongame', 'Ongame');
-        store.network.addNetwork(ongame);
+    const initGlobal = store => {
+        store.global.setSidebarExpanded(DEFAULT_CONFIG.global.sidebarExpanded);
     };
 
     /**
      * Initialisation des stores
      */
     const initStore = store => {
-        console.log('initNetworks');
-        // Initialisation de la liste des rooms
-        initRooms(store);
+        console.log('initStore');
+        // Initialisation de l'application
+        initGlobal(store);
+
+        // Initialisation de la liste des rooms et trackers
+        initSoft(store);
 
         // Initialisation de la liste des networks
         initNetworks(store);
+
+        // Initialisation de la vue Home
+        initHome(store);
     };
     return {
         initStore,

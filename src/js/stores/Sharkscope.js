@@ -1,6 +1,5 @@
 import { observable, computed, action, toJS } from 'mobx';
 import SHA256 from 'crypto-js/sha256';
-import shortid from 'shortid';
 import SharkscopeTab from '../pages/sharkscope/models/SharkscopeTab';
 
 export class Sharkscope {
@@ -49,6 +48,8 @@ export class Sharkscope {
 
     @observable currentTab;
 
+    @observable editedTab;
+
     @action
     setTab(t) {
         this.currentTab = t;
@@ -56,9 +57,21 @@ export class Sharkscope {
 
     // Ajout d'une tabulation
     @action
-    addTab(name) {
-        const tab = new SharkscopeTab(name, this.newTabIcon);
+    addTab() {
+        const tab = this.editedTab;
         this.tabs.push(tab);
+        this.setTab(tab);
+    }
+
+    // mise à jour d'une tabulation
+    @action
+    updateTab() {
+        const tab = this.editedTab;
+        this.tabs.forEach((t, i) => {
+            if (t.id === tab.id) {
+                this.tabs.splice(i, 1, tab);
+            }
+        });
         this.setTab(tab);
     }
 
@@ -77,12 +90,16 @@ export class Sharkscope {
         this.createTab = val;
     }
 
-    @observable newTabIcon = null;
+    @observable editTab = false;
     @action
-    setNewTabIcon(icon) {
-        this.newTabIcon = icon;
+    showEditTab(val) {
+        this.editTab = val;
     }
 
+    @action
+    setEditedTab(tab) {
+        this.editedTab = tab;
+    }
     /**
      * Players
      */
@@ -148,7 +165,6 @@ export class Sharkscope {
             fav.favoriteDate = new Date().toLocaleDateString();
             this.favorites.push(fav);
         }
-        // TODO: supprimer ?
         this.currentTab.players.replace(this.currentTab.players);
     }
 
