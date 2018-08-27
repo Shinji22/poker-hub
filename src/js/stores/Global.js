@@ -26,7 +26,7 @@ export class Global {
      *
      ************************************************************** */
     @observable currentRoute = { id: 'home', label: 'Accueil', icon: 'home' };
-    @observable routeList = [{ id: 'home', label: 'Accueil', icon: 'home' }, { id: 'sharkscope', label: 'Sharkscope', icon: 'find_in_page' }, { id: 'nash', label: 'Tableaux de Nash', icon: 'assessment' }, { id: 'simulations', label: 'Simulations', icon: 'show_chart' }, { id: 'range', label: 'Range', icon: 'grid_on' }, { id: 'settings', label: 'Paramètres', icon: 'settings' }];
+    @observable routeList = [{ id: 'home', label: 'Accueil', icon: 'home' }, { id: 'sharkscope', label: 'Sharkscope', icon: 'find_in_page' }, { id: 'odds', label: 'Côtes', icon: 'local_atm' }, { id: 'nash', label: 'Tableaux de Nash', icon: 'assessment' }, { id: 'simulations', label: 'Simulations', icon: 'show_chart' }, { id: 'range', label: 'Range', icon: 'grid_on' }, { id: 'settings', label: 'Paramètres', icon: 'settings' }];
 
     @action
     setCurrentRoute(value) {

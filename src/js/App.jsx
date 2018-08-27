@@ -7,6 +7,7 @@ import Home from './pages/home/Home.jsx';
 import Sharkscope from './pages/sharkscope/Sharkscope.jsx';
 import Settings from './pages/settings/Settings.jsx';
 import Nash from './pages/nash/Nash.jsx';
+import Odds from './pages/odds/Odds.jsx';
 
 const App = inject('store')(
     observer(({ store }) => {
@@ -21,6 +22,7 @@ const App = inject('store')(
                     {page.id === 'settings' && <Settings />}
                     {page.id === 'sharkscope' && <Sharkscope />}
                     {page.id === 'nash' && <Nash />}
+                    {page.id === 'odds' && <Odds />}
                 </div>
             </div>
         );
